@@ -1,4 +1,8 @@
 Projects::Application.routes.draw do
+
+  get "tracker/index"
+
+  resources :tracker
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
