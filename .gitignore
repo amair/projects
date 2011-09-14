@@ -4,6 +4,6 @@ log/*.log
 tmp/
 .project
 .DS_Store
-.gitignore.swp
+*.swp
 .lock
 credentials.yml

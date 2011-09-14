@@ -1,4 +1,11 @@
-<h1>Tracker#index</h1>
+<h1>Pivotal Overall View</h1>
+
+<%= form_tag("/token", :method => "get") do %>
+  <%= label_tag(:token_input, "Enter your Pivotal Tracker Token") %>
+  <%= text_field_tag(:token_input) %>
+  <%= submit_tag("Submit") %>
+<%end%>
+
 <% @Developments.each do |d| %>
   <div id=<%= d.id %>>
     <%= d.name %>
