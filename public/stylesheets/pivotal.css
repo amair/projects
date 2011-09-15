@@ -7,6 +7,7 @@ div.dev_col, div.test_col, div.complete_col {
   border: 2px solid #D1D1D1;
   padding: 10px;
   margin: 5px;
+  border-radius: 5px;
 }
 
 

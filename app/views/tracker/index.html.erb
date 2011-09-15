@@ -1,25 +1,13 @@
 <h1>Pivotal Overall View</h1>
 
 <div class="dev_col">
-<% @all_development.each do |d| %>
-  <div class=<%=d.current_state%> id=<%= d.id %>>
-    <%= d.name %>
-  </div>
-<% end %>
+<%= render :partial => "story", :collection => @all_development, :as => :story %>
 </div>
 
 <div class="test_col">
-<% @all_testing.each do |t| %>
-  <div class=<%=t.current_state%> id=<%= t.id %>>
-    <%= t.name %>
-  </div>
-<% end %>
+<%= render :partial => "story", :collection => @all_testing, :as => :story %>
 </div>
 
 <div class="complete_col">
-<% @all_completed.each do |c| %>
-  <div class=<%=c.current_state%> id=<%= c.id %>>
-    <%= c.name %>
-  </div>
-<% end %>
+<%= render :partial => "story", :collection => @all_completed, :as => :story %>
 </div>
