@@ -1,0 +1,20 @@
+div.dev_col, div.test_col, div.complete_col {
+  float: left;
+  width: 30%;
+}
+
+
+div.started {
+  background-color: blue;
+  padding: 10px;
+}
+
+div.delivered {
+  background-color: green;
+  padding: 10px;
+}
+
+div.accepted {
+  background-color: yellow;
+  padding: 10px;
+}

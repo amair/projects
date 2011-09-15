@@ -5,12 +5,22 @@ class TrackerController < ApplicationController
     PivotalTracker::Client.token = config["token"]
     @Projects = PivotalTracker::Project.all
 
-    @p1 = @Projects.first.name
-
-    @Developments = []
+    stories = []
+    @all_development = []
+    @all_testing = []
+    @all_completed = []
 
     @Projects.each do |p|
-      @Developments += p.stories.all(:current_state => 'started', :story_type => ['bug','chore','feature']) 
+      stories = p.stories.all(:story_type => ['bug','chore','feature'])
+      subset = stories.select{|s| s.current_state == 'started'}
+      @all_development += subset unless subset.empty?
+
+      
+      subset = stories.select{|s| s.current_state == 'delivered'}
+      @all_testing += subset unless subset.empty?
+
+      subset = stories.select{|s| s.current_state == 'accepted'}
+      @all_completed += subset unless subset.empty?
     end
   end
 

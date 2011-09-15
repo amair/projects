@@ -1,13 +1,25 @@
 <h1>Pivotal Overall View</h1>
 
-<%= form_tag("/token", :method => "get") do %>
-  <%= label_tag(:token_input, "Enter your Pivotal Tracker Token") %>
-  <%= text_field_tag(:token_input) %>
-  <%= submit_tag("Submit") %>
-<%end%>
-
-<% @Developments.each do |d| %>
-  <div id=<%= d.id %>>
+<div class="dev_col">
+<% @all_development.each do |d| %>
+  <div class=<%=d.current_state%> id=<%= d.id %>>
     <%= d.name %>
   </div>
 <% end %>
+</div>
+
+<div class="test_col">
+<% @all_testing.each do |t| %>
+  <div class=<%=t.current_state%> id=<%= t.id %>>
+    <%= t.name %>
+  </div>
+<% end %>
+</div>
+
+<div class="complete_col">
+<% @all_completed.each do |c| %>
+  <div class=<%=c.current_state%> id=<%= c.id %>>
+    <%= c.name %>
+  </div>
+<% end %>
+</div>
