@@ -1,20 +1,33 @@
 div.dev_col, div.test_col, div.complete_col {
   float: left;
-  width: 30%;
+  width: 27%;
+  min-width: 150px;
+  height: 100%;
+  background-color: #F2F2F2;
+  border: 2px solid #D1D1D1;
+  padding: 10px;
+  margin: 5px;
 }
 
 
 div.started {
-  background-color: blue;
-  padding: 10px;
+  border: 2px solid #0000FF;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
 }
 
 div.delivered {
-  background-color: green;
-  padding: 10px;
+  border: 2px solid #00FF00;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
 }
 
 div.accepted {
-  background-color: yellow;
+  border: 2px solid #00FFFF;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
   padding: 10px;
 }
