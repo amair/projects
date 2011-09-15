@@ -1,4 +1,8 @@
-div.dev_col, div.test_col, div.complete_col {
+div {
+  font-family: 'Courier New', Verdana;
+}
+
+div.column {
   float: left;
   width: 27%;
   min-width: 150px;
@@ -8,6 +12,17 @@ div.dev_col, div.test_col, div.complete_col {
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
+}
+
+div.col_header {
+  font-size: 14pt;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  background-color: #858585;
+  border-top-left-radius: 10px 10px;
+  border-top-right-radius: 10px 10px;
 }
 
 
@@ -31,4 +46,15 @@ div.accepted {
   padding: 5px;
   margin: 2px;
   padding: 10px;
+}
+
+div.StoryPoints {
+  font-size: 10pt;
+  text-align: right;
+}
+
+div.StoryTitle {
+  min-height: 100px;
+  font-weight: bold;
+  font-size: 12pt;
 }

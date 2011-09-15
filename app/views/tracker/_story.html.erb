@@ -1,3 +1,8 @@
-  <div class=<%=story.current_state%> id=<%= story.id %>>
+<div class=<%=story.current_state%> id=<%= story.id %>>
+  <div class="StoryTitle">
     <%= story.name %>
   </div>
+  <div class="StoryPoints">
+    <%= story.estimate %>
+  </div>
+</div>

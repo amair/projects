@@ -1,13 +1,16 @@
 <h1>Pivotal Overall View</h1>
 
-<div class="dev_col">
-<%= render :partial => "story", :collection => @all_development, :as => :story %>
+<div class="column">
+  <div class="col_header">Development</div>
+  <%= render :partial => "story", :collection => @all_development, :as => :story %>
 </div>
 
-<div class="test_col">
-<%= render :partial => "story", :collection => @all_testing, :as => :story %>
+<div class="column">
+  <div class="col_header">Test</div>
+  <%= render :partial => "story", :collection => @all_testing, :as => :story %>
 </div>
 
-<div class="complete_col">
-<%= render :partial => "story", :collection => @all_completed, :as => :story %>
+<div class="column">
+  <div class="col_header">Complete</div>
+  <%= render :partial => "story", :collection => @all_completed, :as => :story %>
 </div>
