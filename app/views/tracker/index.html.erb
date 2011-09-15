@@ -1,5 +1,10 @@
 <h1>Pivotal Overall View</h1>
 
+<%= form_tag("/tracker", :method => "get") do%>
+  <%= text_field_tag(:token) %>
+  <%= submit_tag("Submit") %>
+<% end %>
+
 <div class="column">
   <div class="col_header">Development</div>
   <%= render :partial => "story", :collection => @all_development, :as => :story %>
