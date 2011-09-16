@@ -1,25 +1,30 @@
 class TrackerController < ApplicationController
   def index
-    if @token.nil? && params[:token].nil?
+
+    retrieveProjects unless @token.nil?
+
+    if params[:token].nil?
       logger.debug "No token"
     else
-      if @token.nil?
         @token = params[:token] 
         logger.debug "Set Token to #{@token}"
-      end
-
-      begin
-        logger.debug "Using token #{@token}"
-        PivotalTracker::Client.token = @token 
-        logger.debug 'Getting Projects'
-        @Projects = PivotalTracker::Project.all
-        logger.debug "Found #{@Projects.length} Projects"
-      rescue => e
-        logger.error e.response
-      end
-      getStories unless @Projects.nil?
+        retrieveProjects unless @token.nil?
     end
   end
+
+  def retrieveProjects
+    begin
+      logger.debug "Using token #{@token} to get Projects"
+      PivotalTracker::Client.token = @token 
+      @Projects = PivotalTracker::Project.all
+      logger.debug "Found #{@Projects.length} Projects"
+    rescue => e
+      logger.error e.response
+    end
+
+    getStories unless @Projects.nil?
+  end
+
 
   def getStories
     stories = []

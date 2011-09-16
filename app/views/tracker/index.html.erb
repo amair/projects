@@ -1,21 +1,25 @@
 <h1>Pivotal Overall View</h1>
 
-<%= form_tag("/tracker", :method => "get") do%>
-  <%= text_field_tag(:token) %>
-  <%= submit_tag("Submit") %>
-<% end %>
-
-<div class="column">
-  <div class="col_header">Development</div>
-  <%= render :partial => "story", :collection => @all_development, :as => :story %>
+<div class="token_input">
+  <%= form_tag("/tracker", :method => "get") do%>
+    <%= text_field_tag(:token) %>
+    <%= submit_tag("Submit") %>
+  <% end %>
 </div>
 
-<div class="column">
-  <div class="col_header">Test</div>
-  <%= render :partial => "story", :collection => @all_testing, :as => :story %>
-</div>
+<div class="storyboard">
+  <div class="column">
+    <div class="col_header">Development</div>
+    <%= render :partial => "story", :collection => @all_development, :as => :story %>
+  </div>
 
-<div class="column">
-  <div class="col_header">Complete</div>
-  <%= render :partial => "story", :collection => @all_completed, :as => :story %>
+  <div class="column">
+    <div class="col_header">Test</div>
+    <%= render :partial => "story", :collection => @all_testing, :as => :story %>
+  </div>
+
+  <div class="column">
+    <div class="col_header">Complete</div>
+    <%= render :partial => "story", :collection => @all_completed, :as => :story %>
+  </div>
 </div>
