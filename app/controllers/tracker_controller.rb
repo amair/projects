@@ -35,23 +35,24 @@ class TrackerController < ApplicationController
     @Projects.each do |p| 
       begin
         logger.debug "Getting Stories for project #{p.id}"
-        stories = p.stories.all(:story_type => ['bug','chore','feature'])
-        stories = p.stories.all()
+        
+        iteration = PivotalTracker::Iteration.current(p)
+        stories = iteration.stories
         logger.debug "Retrieved #{stories.length} stories"
       rescue => e
         logger.error e.response
       end
 
-      subset = stories.select{|s| s.current_state == 'started'}
+      subset = stories.select{|s| s.current_state == 'started' && s.story_type != 'release'}
       logger.debug "There are #{subset.length} started stories"
       @all_development += subset unless subset.empty?
 
-
-      subset = stories.select{|s| s.current_state == 'delivered'}
+      # TODO Need to decide if we should include 'not yet started' stories #
+      subset = stories.select{|s| s.current_state == 'delivered' && s.story_type != 'release'}
       logger.debug "There are #{subset.length} delivered stories"
       @all_testing += subset unless subset.empty?
 
-      subset = stories.select{|s| s.current_state == 'accepted'}
+      subset = stories.select{|s| s.current_state == 'accepted' && s.story_type != 'release'}
       logger.debug "There are #{subset.length} accepted stories"
       @all_completed += subset unless subset.empty?
     end
