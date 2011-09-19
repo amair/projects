@@ -2,6 +2,13 @@ div {
   font-family: 'Courier New', Verdana;
 }
 
+div.storyboard {
+  background-color: #CCCCCC;
+  height: 100%;
+  overflow: hidden;
+  clear: both;
+}
+
 div.column {
   float: left;
   width: 27%;

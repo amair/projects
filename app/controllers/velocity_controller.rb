@@ -2,7 +2,7 @@ class VelocityController < ApplicationController
 
   def index
 
-    @velocities = Hash.new
+    @velocities = []
 
     retrieveProjects unless @token.nil?
 
@@ -29,6 +29,8 @@ class VelocityController < ApplicationController
   end
 
   def getVelocities
+    pointsHash = Hash.new
+    logger.debug "**** Creating new Hash ****"
     @projects.each do |p| 
       logger.debug "Getting iterations for project #{p.id}"
       logger.debug "Project using point scheme #{p.point_scale}"
@@ -37,12 +39,12 @@ class VelocityController < ApplicationController
         logger.debug "halving all points for this project"
         divisor = 2
       else
+        # TODO We are only dealing with 1-6 and 1-3 point scales ATM
+        logger.debug "Not changing points base - this MAY be a problem for SOME projects"
         divisor = 1
       end
 
       begin
-        # Get last 3 iterations for the project
-        #iteration = PivotalTracker::Iteration.done(p, :offset => '-3')
         iterations = PivotalTracker::Iteration.done(p)
       rescue => e
         logger.error e.response
@@ -57,16 +59,17 @@ class VelocityController < ApplicationController
               points += s.estimate unless s.estimate.nil?
             end
           end
-          if @velocities[i.start.to_s].nil? 
-            @velocities[i.start.to_s] = (points / divisor )
-            logger.debug "Setting #{i.start.to_s} to #{points}"
+          start_date = i.start.strftime("%Y-%m-%d")
+          if pointsHash.member? start_date
+            logger.debug "Updating #{start_date} with #{points} points"
+            pointsHash[start_date] += (points / divisor )
           else
-            @velocities[i.start.to_s] = (points / divisor) + @velocities[i.start.to_s]
-            logger.debug "Updating #{i.start.to_s} with #{points}"
+            logger.debug "Setting #{start_date} to #{points} points"
+            pointsHash[start_date] = (points / divisor)  
           end
+          @velocities = pointsHash.sort
         end
       end
-
     end
   end
 
