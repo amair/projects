@@ -62,16 +62,26 @@ class VelocityController < ApplicationController
           start_date = i.start.strftime("%Y-%m-%d")
           if pointsHash.member? start_date
             logger.debug "Updating #{start_date} with #{points} points"
-            pointsHash[start_date] += (points / divisor )
+            pointsHash[start_date] += (points.to_f / divisor )
           else
             logger.debug "Setting #{start_date} to #{points} points"
-            pointsHash[start_date] = (points / divisor)  
+            pointsHash[start_date] = (points.to_f / divisor)
           end
           @velocities = pointsHash.sort
+
+          calculateMovingAverages
         end
       end
     end
   end
 
-
+  def calculateMovingAverages
+    j=0
+    @movingAverage = []
+    length = @velocities.length
+    while j<= (length -3)
+      @movingAverage[j] = (@velocities[j][1] + @velocities[j+1][1] + @velocities[j+2][1]).to_f / 3
+      j+=1
+    end
+  end
 end
