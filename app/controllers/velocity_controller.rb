@@ -13,6 +13,10 @@ class VelocityController < ApplicationController
       logger.debug "Set Token to #{@token}"
       retrieveProjects unless @token.nil?
     end
+    respond_to do |format|
+      format.html
+      format.xml { render :action => "velocity.rxml", :layout => false }
+     end
   end
 
   def retrieveProjects
