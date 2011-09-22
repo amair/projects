@@ -50,7 +50,7 @@
       <left>50</left>                                           <!-- [60](Number / Number%) --> 
       <top>55</top>                                             <!-- [60](Number / Number%) --> 
       <right>40</right>                                         <!-- [60](Number / Number%) --> 
-      <bottom>30</bottom>                                       <!-- [80](Number / Number%) --> 
+      <bottom>100</bottom>                                       <!-- [80](Number / Number%) -->
     </margins>
   </plot_area>
 
@@ -98,7 +98,7 @@
   <values>                                                    <!-- VALUES -->
     <x>                                                       <!-- x axis -->
       <enabled></enabled>                                     <!-- [true] (true / false) -->
-      <rotate></rotate>                                       <!-- [0] (0 - 90) angle of rotation. If you want to rotate by degree from 1 to 89, you must have font.swf file in fonts folder -->      
+      <rotate>90</rotate>                                       <!-- [0] (0 - 90) angle of rotation. If you want to rotate by degree from 1 to 89, you must have font.swf file in fonts folder -->
       <frequency></frequency>                                 <!-- [1] (Number) how often values should be placed, 1 - near every gridline, 2 - near every second gridline... -->
       <skip_first></skip_first>                               <!-- [false] (true / false) to skip or not first value -->
       <skip_last></skip_last>                                 <!-- [false] (true / false) to skip or not last value -->
@@ -222,7 +222,7 @@
       <enabled>true</enabled>                                 <!-- [false] (true / false) whether to show values near legend entries or not -->
       <width>44</width>                                       <!-- [80] (Number) width of text field for value -->
       <align>left</align>                                     <!-- [right] (right / left) -->
-      <text><![CDATA[: ${value}]]></text>                     <!-- [{value}] ({title} {value} {series} {description} {percents}) You can format any text: {value} will be replaced with value, {description} - with description and so on. You can add your own text or html code too. -->
+      <text><![CDATA[: {value}]]></text>                     <!-- [{value}] ({title} {value} {series} {description} {percents}) You can format any text: {value} will be replaced with value, {description} - with description and so on. You can add your own text or html code too. -->
      </values>
   </legend>
   
@@ -345,7 +345,7 @@
       <color>#FFCC00</color>                                  <!-- [] (hex color code) if not defined, uses colors from this array: #FF0000, #0000FF, #00FF00, #FF9900, #CC00CC, #00CCCC, #33FF00, #990000, #000066 -->
       <color_hover></color_hover>                             <!-- [#BBBB00] (hex color code) -->
       <line_alpha></line_alpha>                               <!-- [100] (0 - 100) -->
-      <line_width></line_width>                               <!-- [0] (Number) 0 for hairline -->                                    
+      <line_width>3</line_width>                               <!-- [0] (Number) 0 for hairline -->
       <fill_alpha></fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
       <fill_color></fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
       <balloon_color></balloon_color>                         <!-- [graph color] (hex color code) leave empty to use the same color as graph -->
@@ -359,7 +359,7 @@
       <hidden></hidden>                                       <!-- [false] (true / false) vill not be visible until you check corresponding checkbox in the legend -->
       <selected></selected>                                   <!-- [true] (true / false) if true, balloon indicating value will be visible then roll over plot area -->
       <balloon_text>
-        <![CDATA[${value}]]>                                          <!-- [<b>{value}</b><br>{description}] ({title} {value} {series} {description} {percents}) You can format any balloon text: {title} will be replaced with real title, {value} - with value and so on. You can add your own text or html code too. -->
+        <![CDATA[{value}]]>                                          <!-- [<b>{value}</b><br>{description}] ({title} {value} {series} {description} {percents}) You can format any balloon text: {title} will be replaced with real title, {value} - with value and so on. You can add your own text or html code too. -->
       </balloon_text>
       <data_labels>
         <![CDATA[]]>                                          <!-- [] ({title} {value} {series} {description} {percents}) Data labels can display value (and more) near your point on the plot area. -->
@@ -376,9 +376,11 @@
       <axis>left</axis>
       <title>Weighted Average Velocity</title>              
       <color>#999999</color>
-      <selected>false</selected>                     
+      <fill_alpha>10</fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
+      <fill_color>#000000,#999999</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
+      <selected>false</selected>
       <balloon_text>
-        <![CDATA[${value}]]>
+        <![CDATA[{value}]]>
       </balloon_text>
     </graph>
   </graphs>  
