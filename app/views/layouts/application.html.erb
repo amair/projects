@@ -7,6 +7,15 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+
+
+<div class="token_input">
+  <%= form_tag(:controller, :method => "get") do%>
+    <%= text_field_tag(:token) %>
+    <%= submit_tag("Submit") %>
+  <% end %>
+</div>
+
 <%= yield %>
 
 </body>

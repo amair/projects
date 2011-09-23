@@ -5,6 +5,7 @@ class TrackerController < ApplicationController
       if cookies[:token].nil?
         if params[:token].nil?
           logger.fatal "Cannot figure out tracker token - giving up"
+          #redirect_to self,  :notice => "You need to supply your Pivotal Tracker access token"
         else
           @token = params[:token]
           cookies.permanent[:token] = @token unless @token.nil?
