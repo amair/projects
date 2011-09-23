@@ -1,18 +1,18 @@
         <!-- amcharts script-->
         <!-- swf object (version 2.2) is used to detect if flash is installed and include swf in the page -->
         <script type="text/javascript" src="../../amcharts/flash/swfobject.js"></script>
-        
+
         <!-- following scripts required for JavaScript version. The order is important! -->
         <script type="text/javascript" src="../../amcharts/javascript/amcharts.js"></script>
         <script type="text/javascript" src="../../amcharts/javascript/amfallback.js"></script>
         <script type="text/javascript" src="../../amcharts/javascript/raphael.js"></script>
-        
+
         <!-- chart is placed in this div. if you have more than one chart on a page, give unique id for each div -->
         <div id="chartdiv" style="width:600px; height:400px; background-color:#FFFFFF"></div>
-        
+
         <script type="text/javascript">
-        
-            var params = 
+
+            var params =
             {
                 bgcolor:"#FFFFFF"
             };
@@ -20,16 +20,16 @@
             var data_file_url =  "velocity.xml?utf8=✓&token="  ;
 
             data_file_url = data_file_url.concat("<%= @token.to_s %>") ;
-            
+
            var flashVars =
             {
 
                 settings_file: "velocity_settings.xml",
                 data_file: data_file_url
             };
-                
+
             window.onload = function()
-            {                
+            {
                 // change == to != to test flash version
                 if(AmCharts.recommended() == "js")
                 {
@@ -45,13 +45,13 @@
                     swfobject.embedSWF("../../amcharts/flash/amline.swf", "chartdiv", "600", "400", "8.0.0", "../../amcharts/flash/expressInstall.swf", flashVars, params);
                 }
             }
-        
+
         </script>
-        
+
         <!-- end of amcharts script -->
-        
+
         <!-- other parameters which can be passed with flashVars to swf:
-        
+
             chart_data - data in csv or xml format;
             chart_settings - settings in xml format;
             additional_chart_settings - settings in xml format which will be appended to chart_settings or settings loaded from a file;
@@ -59,5 +59,3 @@
             loading_data - string displayed while loading data;
             preloader_color - hex color (#CC0000 for example) of a preloader bar;
          -->
-
-

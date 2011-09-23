@@ -1,21 +1,29 @@
 class TrackerController < ApplicationController
   def index
 
+    if @token.nil?
+      if cookies[:token].nil?
+        if params[:token].nil?
+          logger.fatal "Cannot figure out tracker token - giving up"
+        else
+          @token = params[:token]
+          cookies.permanent[:token] = @token unless @token.nil?
+          logger.debug "Retrieve Pivotal token #{@token} from page submission and store in cookie"
+        end
+      else
+        @token = cookies[:token]
+        logger.debug "Retrieving token #{@token} from cookie"
+      end
+    end
+
     retrieveProjects unless @token.nil?
 
-    if params[:token].nil?
-      logger.debug "No token"
-    else
-      @token = params[:token] 
-      logger.debug "Set Token to #{@token}"
-      retrieveProjects unless @token.nil?
-    end
   end
 
   def retrieveProjects
     begin
       logger.debug "Using token #{@token} to get Projects"
-      PivotalTracker::Client.token = @token 
+      PivotalTracker::Client.token = @token
       @projects = PivotalTracker::Project.all
       logger.debug "Found #{@projects.length} Projects"
     rescue => e
@@ -31,9 +39,9 @@ class TrackerController < ApplicationController
     @all_testing = []
     @all_completed = []
 
-    @projects.each do |p| 
+    @projects.each do |p|
       logger.debug "Getting Stories for project #{p.id}"
-      
+
       begin
         iteration = PivotalTracker::Iteration.current(p)
       rescue => e
