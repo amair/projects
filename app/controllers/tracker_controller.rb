@@ -1,30 +1,14 @@
-class TrackerController < ApplicationController
+class TrackerController < TokenManagement
   def index
 
-    if @token.nil?
-      if cookies[:token].nil?
-        if params[:token].nil?
-          logger.fatal "Cannot figure out tracker token - giving up"
-          #redirect_to self,  :notice => "You need to supply your Pivotal Tracker access token"
-        else
-          @token = params[:token]
-          cookies.permanent[:token] = @token unless @token.nil?
-          logger.debug "Retrieve Pivotal token #{@token} from page submission and store in cookie"
-        end
-      else
-        @token = cookies[:token]
-        logger.debug "Retrieving token #{@token} from cookie"
-      end
-    end
-
-    retrieveProjects unless @token.nil?
+    retrieveProjects unless get_token.nil?
 
   end
 
   def retrieveProjects
     begin
-      logger.debug "Using token #{@token} to get Projects"
-      PivotalTracker::Client.token = @token
+      logger.debug "Using token #{get_token} to get Projects"
+      PivotalTracker::Client.token = get_token
       @projects = PivotalTracker::Project.all
       logger.debug "Found #{@projects.length} Projects"
     rescue => e

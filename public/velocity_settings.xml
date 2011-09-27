@@ -374,7 +374,7 @@
 
     <graph gid="1">
       <axis>left</axis>
-      <title>Weighted Average Velocity</title>
+      <title>3-period Moving Average Velocity</title>
       <color>#999999</color>
       <fill_alpha>10</fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
       <fill_color>#000000,#999999</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
