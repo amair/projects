@@ -1,4 +1,4 @@
-class VelocityController < TokenManagement
+class VelocityController < PivotalManagement
 
   def index
 
@@ -7,29 +7,16 @@ class VelocityController < TokenManagement
     respond_to do |format|
       format.html
       format.xml {
-        retrieveProjects unless get_token.nil?
+        getVelocities unless retrieveProjects.nil?
         render :action => "velocity.rxml", :layout => false
       }
      end
   end
 
-  def retrieveProjects
-    begin
-      logger.debug "Using token #{get_token} to get Projects"
-      PivotalTracker::Client.token = get_token
-      @projects = PivotalTracker::Project.all
-      logger.debug "Found #{@projects.length} Projects"
-    rescue => e
-      logger.error e.response
-    end
-
-    getVelocities unless @projects.nil?
-  end
-
   def getVelocities
     pointsHash = Hash.new
     logger.debug "**** Creating new Hash ****"
-    @projects.each do |p|
+    @@projects.each do |p|
       logger.debug "Getting iterations for project #{p.id}"
       logger.debug "Project using point scheme #{p.point_scale}"
 

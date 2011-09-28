@@ -1,21 +1,8 @@
-class TrackerController < TokenManagement
+class TrackerController < PivotalManagement
   def index
 
-    retrieveProjects unless get_token.nil?
+    getStories unless retrieveProjects.nil?
 
-  end
-
-  def retrieveProjects
-    begin
-      logger.debug "Using token #{get_token} to get Projects"
-      PivotalTracker::Client.token = get_token
-      @projects = PivotalTracker::Project.all
-      logger.debug "Found #{@projects.length} Projects"
-    rescue => e
-      logger.error e.response
-    end
-
-    getStories unless @projects.nil?
   end
 
   def getStories
@@ -24,7 +11,7 @@ class TrackerController < TokenManagement
     @all_testing = []
     @all_completed = []
 
-    @projects.each do |p|
+    @@projects.each do |p|
       logger.debug "Getting Stories for project #{p.id}"
 
       begin

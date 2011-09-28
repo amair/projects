@@ -1,7 +1,21 @@
-class TokenManagement < ApplicationController
+class PivotalManagement < ApplicationController
 
   @@token = nil
+  @@projects = nil
 
+  def retrieveProjects
+    begin
+      PivotalTracker::Client.token = get_token
+      logger.debug "Using token #{get_token} to get Projects"
+      @@projects = PivotalTracker::Project.all
+      logger.debug "Found #{@@projects.length} Projects"
+      @@projects
+    rescue => e
+      logger.error e.response
+    end
+  end
+
+  private
   def get_token
     if @@token.nil?
       if cookies[:token].nil?
