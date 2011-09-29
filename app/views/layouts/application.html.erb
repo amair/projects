@@ -11,6 +11,7 @@
 
 <div class="token_input">
   <%= form_tag(:controller, :method => "get") do%>
+    <%= label_tag(:token, "Enter your Pivotal Tracker Token:") %>
     <%= text_field_tag(:token) %>
     <%= submit_tag("Submit") %>
   <% end %>
