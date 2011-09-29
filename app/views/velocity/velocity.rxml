@@ -1,11 +1,13 @@
-xml.instruct!   # <?xml version="1.0" encoding="UTF-8"?>
+xml.instruct! # <?xml version="1.0" encoding="UTF-8"?>
 xml.chart do
   # xml.message "You can broadcast any message to chart from data XML file", :bg_color => "#FFFFFF", :text_color => "#000000"
 
 
-  xml.series do
-    @velocities.each_with_index do |velocity, index|
-      xml.value(velocity[0], "xid" => index)
+  if !@velocities.nil? && !@movingAverage.nil?
+
+    xml.series do
+      @velocities.each_with_index do |velocity, index|
+        xml.value(velocity[0], "xid" => index)
       end
     end
 
@@ -24,10 +26,10 @@ xml.chart do
           # The moving average needs 3 values before it can be calculated
           # so shift along 2 iterations
           i = index + 2
-          xml.value(ma, "xid" => i )
+          xml.value(ma, "xid" => i)
         end
       end
 
     end
-
+  end
 end

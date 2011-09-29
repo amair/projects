@@ -1,6 +1,6 @@
 class PivotalManagement < ApplicationController
 
-  @@token = nil
+  @token = nil
   @@projects = nil
 
   def retrieveProjects
@@ -11,29 +11,40 @@ class PivotalManagement < ApplicationController
       logger.debug "Found #{@@projects.length} Projects"
       @@projects
     rescue => e
-      logger.error e.response
+      logger.debug e.class
+      logger.error e.message
     end
   end
 
+  def get_params
+    param_string = ""
+
+    if (!get_token.nil?)
+      param_string = "?token=" + get_token.to_s
+    end
+
+    param_string
+  end
+
   private
+
   def get_token
-    if @@token.nil?
-      if cookies[:token].nil?
-        if params[:token].nil?
+    logger.debug "#{params}"
+    if @token.nil?
+      if params[:token]
+        @token = params[:token]
+        cookies.permanent[:token] = @token unless @token.nil?
+        logger.debug "Retrieve Pivotal token #{@token} from page submission and store in cookie"
+      else
+        if cookies[:token].nil?
           logger.fatal "Cannot figure out tracker token - giving up"
         else
-          @@token = params[:token]
-          cookies.permanent[:token] = @@token unless @@token.nil?
-          logger.debug "Retrieve Pivotal token #{@@token} from page submission and store in cookie"
+          @token = cookies[:token]
+          logger.debug "Retrieving token #{@token} from cookie"
         end
-      else
-        @@token = cookies[:token]
-        logger.debug "Retrieving token #{@@token} from cookie"
       end
-    else
-      logger.debug "Using session value for token"
     end
-    @@token
+    @token
   end
 
 end
