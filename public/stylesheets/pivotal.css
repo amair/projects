@@ -32,6 +32,10 @@ div.col_header {
   border-top-right-radius: 10px 10px;
 }
 
+span.points {
+    text-align: right;
+}
+
 
 div.project {
   border: 2px solid #FFFFFF;

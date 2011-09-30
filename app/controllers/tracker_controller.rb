@@ -53,6 +53,7 @@ class TrackerController < PivotalManagement
       end
       logger.debug "Got all stories!"
     end
+
   end
 
 
