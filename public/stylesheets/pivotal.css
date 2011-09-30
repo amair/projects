@@ -33,22 +33,53 @@ div.col_header {
 }
 
 
-div.started {
+div.project {
+  border: 2px solid #FFFFFF;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
+  padding: 10px;
+}
+div.project1 {
   border: 2px solid #0000FF;
   border-radius: 5px;
   padding: 5px;
   margin: 2px;
 }
 
-div.delivered {
+div.project2 {
   border: 2px solid #00FF00;
   border-radius: 5px;
   padding: 5px;
   margin: 2px;
 }
 
-div.accepted {
+div.project3 {
   border: 2px solid #00FFFF;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
+  padding: 10px;
+}
+
+div.project4 {
+  border: 2px solid #FF0000;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
+  padding: 10px;
+}
+
+div.project5 {
+  border: 2px solid #FFFF00;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 2px;
+  padding: 10px;
+}
+
+div.project5 {
+  border: 2px solid #ffb500;
   border-radius: 5px;
   padding: 5px;
   margin: 2px;

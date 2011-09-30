@@ -1,3 +1,10 @@
+module PivotalTracker
+  class Project
+       element :div_class, String
+  end
+end
+
+
 class PivotalManagement < ApplicationController
 
   @token = nil
@@ -9,11 +16,25 @@ class PivotalManagement < ApplicationController
       logger.debug "Using token #{get_token} to get Projects"
       @@projects = PivotalTracker::Project.all
       logger.debug "Found #{@@projects.length} Projects"
+
+      x=0
+      @@projects.each {|p| p.div_class = "project" + (x += 1).to_s}
+      # TODO Should really put a mod value on this to limit max
+
       @@projects
     rescue => e
       logger.debug e.class
       logger.error e.message
     end
+  end
+
+  def lookupProject p_id
+    div_class="project"
+    proj = @@projects.find{|p| p.id == p_id}
+
+    div_class = proj.div_class unless proj.nil?
+
+    div_class
   end
 
   def get_params
