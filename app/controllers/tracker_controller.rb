@@ -13,6 +13,12 @@ class TrackerController < PivotalManagement
 
   end
 
+  def filter_stories
+    filtered_stories = yield
+
+    filtered_stories.each  { |s| s.div_class  = lookupProject s.project_id} unless filtered_stories.empty?
+  end
+
   def getStories
     stories = []
     @all_development = []
@@ -32,24 +38,16 @@ class TrackerController < PivotalManagement
         stories = iteration.stories
         logger.debug "Retrieved #{stories.length} stories"
 
-        subset = stories.select { |s| s.current_state == 'started' && s.story_type != 'release' }
-        logger.debug "There are #{subset.length} started stories"
-        @all_development += subset unless subset.empty?
+        filtered = filter_stories {stories.select { |s| s.current_state == 'started' && s.story_type != 'release' }}
+        @all_development.concat(filtered) unless filtered.nil?
 
-        @all_development.each { |s| s.div_class  = lookupProject s.project_id}
+        ## TODO Need to decide if we should include 'not yet started' stories #
+        filtered = filter_stories {stories.select { |s| s.current_state == 'delivered' && s.story_type != 'release' }}
+        @all_testing.concat (filtered) unless filtered.nil?
 
-        # TODO Need to decide if we should include 'not yet started' stories #
-        subset = stories.select { |s| s.current_state == 'delivered' && s.story_type != 'release' }
-        logger.debug "There are #{subset.length} delivered stories"
-        @all_testing += subset unless subset.empty?
+        filtered =  filter_stories {stories.select { |s| s.current_state == 'accepted' && s.story_type != 'release' }}
+        @all_completed.concat (filtered) unless filtered.nil?
 
-        @all_testing.each { |s| s.div_class  = lookupProject s.project_id}
-
-        subset = stories.select { |s| s.current_state == 'accepted' && s.story_type != 'release' }
-        logger.debug "There are #{subset.length} accepted stories"
-        @all_completed += subset unless subset.empty?
-
-        @all_completed.each { |s| s.div_class  = lookupProject s.project_id}
       end
       logger.debug "Got all stories!"
     end
