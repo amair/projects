@@ -95,6 +95,14 @@ div.StoryPoints {
   text-align: right;
 }
 
+div.bug {
+   float: right;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 20px;
+}
+
 div.StoryTitle {
   min-height: 100px;
   font-weight: bold;

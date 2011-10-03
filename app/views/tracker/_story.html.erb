@@ -1,8 +1,14 @@
-<div class=<%=story.div_class%> id=<%= story.id %>>
+<div class=<%= story.div_class %> id=<%= story.id %>>
   <div class="StoryTitle">
     <%= story.name %>
   </div>
-  <div class="StoryPoints">
-    <%= story.estimate %>
-  </div>
+  <% if story.estimate.nil? %>
+      <div class="bug">
+        <img src="/images/bug_external.png" />
+      </div>
+  <% else %>
+      <div class="StoryPoints">
+        <%= story.estimate %>
+      </div>
+  <% end %>
 </div>
