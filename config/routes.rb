@@ -2,7 +2,7 @@ Projects::Application.routes.draw do
 
   get "tracker/index"
 
-  resources :tracker, :velocity
+  resources :tracker, :velocity, :print
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

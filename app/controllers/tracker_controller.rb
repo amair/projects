@@ -13,6 +13,10 @@ class TrackerController < PivotalManagement
 
   end
 
+  def create
+
+  end
+
   def filter_stories
     filtered_stories = yield
 

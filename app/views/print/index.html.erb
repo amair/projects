@@ -1,0 +1,16 @@
+<h1>Print</h1>
+
+<%= form_tag do %>
+
+    <div class="form_row">
+    <label for="story[]">Features:</label>
+    <% @stories.each do |story| %>
+      <br><%= check_box_tag 'story[]', [story.project_id, story.id],
+              (params[:stories] || {}).include?(story.id) %>
+      <%= story.name %>
+    <% end %>
+</div>
+
+     <%= submit_tag("Print") %>
+
+<% end %>
