@@ -1,8 +1,13 @@
-Projects::Application.routes.draw do
+Projects::Application.routes.draw do |map|
 
-  get "tracker/index"
+ # get "root_page/index"
 
-  resources :tracker, :velocity, :print
+#  get "tracker/index"
+
+  map.root :controller => "root_page"
+
+  map.resources :tracker, :velocity, :print
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
