@@ -26,7 +26,7 @@ module PivotalTracker
     end
 
     def points
-      return nil unless :story_type == "feature"
+      return nil unless self.story_type.eql?("feature")
       "Points: " + (self.respond_to?(:estimate) && !self.estimate.eql?(-1) ? self.estimate.to_s : "Not yet estimated")
     end
   end
@@ -73,59 +73,49 @@ module Pdf
 
         @stories.each do |story|
 
-          # We only want to print stories which aren't release milestones and
-          # that still have work to be done (aren't accepted)
-          if story.story_type != "release" && story.current_state != "accepted"
+          bb = get_bounding_box(index %4)
 
-            bb = Hash.new
-            bb = get_bounding_box(index %4)
+          # --- Write content
+          pdf.bounding_box [bb[:left], bb[:top]], :width => bb[:width], :height => bb[:height] do
 
-            # --- Write content
-            pdf.bounding_box [bb[:left], bb[:top]], :width => bb[:width], :height => bb[:height] do
+            pdf.stroke_color = "000000"
+            pdf.line_width=6
+            pdf.stroke_bounds
 
-              pdf.stroke_color = "000000"
-              pdf.line_width=6
-              pdf.stroke_bounds
+            # We want to inset the text from the border which has been painted
+            pdf.bounding_box [MARGIN, pdf.bounds.top-MARGIN], :width => 120.mm, :height => bb[:height] - MARGIN*2 do
 
-              # We want to inset the text from the border which has been painted
-              pdf.bounding_box [MARGIN, pdf.bounds.top-MARGIN], :width => 120.mm, :height => bb[:height] - MARGIN*2 do
+              pdf.text story.name.force_encoding("UTF-8"), :size => 14
+              pdf.fill_color "52D017"
+              pdf.text story.label_text, :size => 8
+              pdf.text "\n", :size => 14
+              pdf.fill_color "444444"
+              pdf.text story.description.force_encoding("UTF-8") || "", :size => 10
 
-                pdf.text story.name.force_encoding("UTF-8"), :size => 14
-                pdf.fill_color "52D017"
-                pdf.text story.label_text, :size => 8
-                pdf.text "\n", :size => 14
-                pdf.fill_color "444444"
-                pdf.text story.description.force_encoding("UTF-8") || "", :size => 10
+              #pdf.fill_color ""
+              #pdf.text story.tasks, :size => 8
 
-                #pdf.fill_color ""
-                #pdf.text story.tasks, :size => 8
+              pdf.fill_color "000000"
+              pdf.text_box story.points, :size => 12, :align => :center, :valign => :bottom unless story.points.nil?
 
-                pdf.fill_color "000000"
-                pdf.text_box story.points, :size => 12, :align => :center, :valign => :bottom unless story.points.nil?
+              #pdf.text_box "Owner: " + (story.respond_to?(:owned_by) ? story.owned_by : "None"), :size => 8, :valign => :bottom
 
-                #pdf.text_box "Owner: " + (story.respond_to?(:owned_by) ? story.owned_by : "None"), :size => 8, :valign => :bottom
-
-                pdf.fill_color "999999"
-                pdf.text_box story.story_type.force_encoding("UTF-8").capitalize, :size => 8, :align => :right, :valign => :bottom
-                pdf.fill_color "000000"
-              end
+              pdf.fill_color "999999"
+              pdf.text_box story.story_type.force_encoding("UTF-8").capitalize, :size => 8, :align => :right, :valign => :bottom
+              pdf.fill_color "000000"
             end
-            index = index + 1
-
-            if (index % 4) == 0
-              pdf.start_new_page unless index == @stories.size
-            end
-
-          else
-            puts "Skipping story (" << story.id.to_s << ") "<< story.name
-
           end
+          index = index + 1
+
+          if (index % 4) == 0
+            pdf.start_new_page unless index == @stories.size
+          end
+
         end
-        #      pdf.number_pages "<page>/<total>", {:at => [pdf.bounds.right - 16.mm, 2.mm]}
-
         @filename.write (pdf.render().force_encoding("UTF-8"))
-
       end
+
+
     rescue Exception
       puts "[!] There was an error while generating the PDF file... What happened was:".foreground(:red)
       raise
