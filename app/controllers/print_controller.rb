@@ -4,7 +4,7 @@ class PrintController < PivotalManagement
 
   def index
 
-    get_stories unless retrieveProjects.nil?
+    get_filtered_stories unless retrieveProjects.nil?
 
   end
 
@@ -23,13 +23,23 @@ class PrintController < PivotalManagement
       @ps[str[0]].push str[1]
     end
 
-    @ps.each do |project_id, stories|
-     stories.each do |s|
-        @stories.concat get_story project_id, s
-       print s
+    @ps.each do |project_id, story_ids|
+      story_ids.each do |s_id|
+        @stories.push get_story project_id, s_id
       end
     end
 
+  end
+
+  def get_story (project_id, story_id)
+    story = []
+    @@projects.each do |p|
+      print p
+      if p.id.to_s == project_id
+        story = p.stories.find(story_id)
+      end
+    end
+    story
   end
 
   def filter_stories
@@ -38,16 +48,8 @@ class PrintController < PivotalManagement
     filtered_stories.each { |s| s.div_class = lookupProject s.project_id } unless filtered_stories.empty?
   end
 
-  def get_story (project_id, story_id)
-    @@projects.each do |p|
-      if p.id == project_id
-        p.stories.find(story_id)
-      end
-    end
-  end
 
-  def get_stories
-
+  def get_filtered_stories
     @stories=[]
     if (!@@projects.nil?)
       @@projects.each do |p|
@@ -66,6 +68,6 @@ class PrintController < PivotalManagement
       end
       logger.debug "Got all stories!"
     end
-
   end
+
 end
