@@ -47,6 +47,7 @@ class PrintController < PivotalManagement
       print p
       if p.id.to_s == project_id
         story = p.stories.find(story_id)
+        story.div_class = lookupProject story.project_id
       end
     end
     story

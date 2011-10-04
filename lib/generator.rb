@@ -15,8 +15,8 @@ module PivotalTracker
     end
 
     def task_list
-      all_tasks = self.tasks.all   #Retrieve the tasks from the network
-      return "" if !self.respond_to?(:tasks) ||  all_tasks.nil?
+      all_tasks = self.tasks.all #Retrieve the tasks from the network
+      return "" if !self.respond_to?(:tasks) || all_tasks.nil?
       task_string=""
       all_tasks.each do |task|
         if (!task.complete)
@@ -30,25 +30,28 @@ module PivotalTracker
       return nil unless self.story_type.eql?("feature")
       "Points: " + (self.respond_to?(:estimate) && !self.estimate.eql?(-1) ? self.estimate.to_s : "Not yet estimated")
     end
-  end
 
-  def story_color
-    return "52D017" if feature?
-    return "FF0000" if bug?
-    return "FFFF00" if chore?
-    return "000000" # For Releases or Unknown type
-  end
+    def story_color
+      return "0000FF" if self.div_class.eql? "project1"
+      return "00FF00" if self.div_class.eql? "project2"
+      return "00FFFF" if self.div_class.eql? "project3"
+      return "FF0000" if self.div_class.eql? "project4"
+      return "0000FF" if self.div_class.eql? "project5"
+      return "ffb500" if self.div_class.eql? "project6"
+      return "000000" # For Unknown
+    end
 
-  private
+    private
 
-  ["feature", "bug", "chore", "release"].each do |type_str|
-    class_eval <<-EOS
+    ["feature", "bug", "chore", "release"].each do |type_str|
+      class_eval <<-EOS
       def #{type_str}?
       self.story_type == "#{type_str}"
     end
-    EOS
-  end
+      EOS
+    end
 
+  end
 end
 
 
@@ -79,7 +82,7 @@ module Pdf
           # --- Write content
           pdf.bounding_box [bb[:left], bb[:top]], :width => bb[:width], :height => bb[:height] do
 
-            pdf.stroke_color = "000000"
+            pdf.stroke_color = story.story_color
             pdf.line_width=6
             pdf.stroke_bounds
 
