@@ -5,9 +5,16 @@ class PrintController < PivotalManagement
   @stories=[]
 
   def index
+    @state_selection = ["unstarted", "Started", "Finished", "Delivered" "Accepted", "Rejected"]
 
     get_filtered_stories unless retrieveProjects.nil?
 
+  end
+
+  # @return [Object]
+  def update_stories
+    selection = params[:state]
+    logger.debug "Update"
   end
 
   def create
@@ -67,7 +74,9 @@ class PrintController < PivotalManagement
         logger.debug "Getting Stories for project #{p.id}"
 
         begin
-          var = p.stories.all(:current_state => 'unstarted', :story_type => ['feature', 'bug', 'chore'])
+          state_filtering = params[:state]
+          logger.debug "Showing states #{state_filtering}"
+          var = p.stories.all(:current_state => state_filtering, :story_type => ['feature', 'bug', 'chore'])
         rescue => e
           logger.error e.response
         end

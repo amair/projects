@@ -1,6 +1,8 @@
 <h1>Index Page</h1>
 <p>Choose where to go from here</p>
 
-<%= link_to "Current Iteration", :controller => "tracker", :action => "index"  %>
-<%= link_to "Print Story cards", :controller => "print", :action => "index"  %>
-<%= link_to "Historical velocity", :controller => "velocity", :action => "index"  %>
+<div class="Links_table">
+  <div class="link"><%= link_to "Current Iteration", :controller => "tracker", :action => "index" %> </div>
+  <div class="link"><%= link_to "Print Story cards", :controller => "print", :action => "index" %>  </div>
+  <div class="link"><%= link_to "Historical velocity", :controller => "velocity", :action => "index" %> </div>
+</div>

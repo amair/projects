@@ -6,7 +6,13 @@ Projects::Application.routes.draw do |map|
 
   map.root :controller => "root_page"
 
-  map.resources :tracker, :velocity, :print
+  map.resources :tracker, :velocity
+
+  resources :print do
+  member do
+    get 'update_stories'
+  end
+end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -108,3 +108,7 @@ div.StoryTitle {
   font-weight: bold;
   font-size: 12pt;
 }
+
+div#link {
+    float: left;
+}
