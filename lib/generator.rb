@@ -15,11 +15,12 @@ module PivotalTracker
     end
 
     def task_list
-      return "" if !self.respond_to?(:tasks) || self.tasks.nil? || self.tasks.empty?
+      all_tasks = self.tasks.all   #Retrieve the tasks from the network
+      return "" if !self.respond_to?(:tasks) ||  all_tasks.nil?
       task_string=""
-      tasks.each do |task|
+      all_tasks.each do |task|
         if (!task.complete)
-          task_string = task_string << "* " << task.description << "\n"
+          task_string = task_string << "* " << task.description.force_encoding("UTF-8") << "\n"
         end
       end
       task_string
@@ -93,7 +94,7 @@ module Pdf
               pdf.text story.description.force_encoding("UTF-8") || "", :size => 10
 
               #pdf.fill_color ""
-              #pdf.text story.tasks, :size => 8
+              pdf.text story.task_list, :size => 8
 
               pdf.fill_color "000000"
               pdf.text_box story.points, :size => 12, :align => :center, :valign => :bottom unless story.points.nil?
