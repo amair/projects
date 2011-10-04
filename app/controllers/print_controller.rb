@@ -1,3 +1,5 @@
+require 'generator'
+
 class PrintController < PivotalManagement
 
   @stories=[]
@@ -29,7 +31,10 @@ class PrintController < PivotalManagement
       end
     end
 
+    pdf = Pdf::Generator.new(@stories)
+    pdf.write_to
   end
+
 
   def get_story (project_id, story_id)
     story = []
@@ -69,5 +74,6 @@ class PrintController < PivotalManagement
       logger.debug "Got all stories!"
     end
   end
+
 
 end

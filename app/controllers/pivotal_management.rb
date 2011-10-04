@@ -4,6 +4,15 @@ module PivotalTracker
   end
 end
 
+#Open story class to add an element
+module PivotalTracker
+  class Story
+    element :div_class, String
+  end
+
+end
+
+
 
 class PivotalManagement < ApplicationController
 
