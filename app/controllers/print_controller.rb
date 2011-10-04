@@ -32,7 +32,12 @@ class PrintController < PivotalManagement
     end
 
     pdf = Pdf::Generator.new(@stories)
-    pdf.write_to
+    file = pdf.write_to
+
+    send_file file.path, :type=>"application/pdf" unless file.nil?
+
+    file.unlink  # deletes the temp file
+
   end
 
 

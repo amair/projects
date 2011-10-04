@@ -123,19 +123,18 @@ module Pdf
         end
         #      pdf.number_pages "<page>/<total>", {:at => [pdf.bounds.right - 16.mm, 2.mm]}
 
-        #file_data = pdf.render()
         @filename.write (pdf.render().force_encoding("UTF-8"))
 
-        @filename.close
-
-        #@filename.unlink  deletes the temp file
-
-        puts ">>> Generated PDF file in '#{@filename}'".foreground(:green)
       end
     rescue Exception
       puts "[!] There was an error while generating the PDF file... What happened was:".foreground(:red)
       raise
+    else
+      @filename
+    ensure
+      @filename.close unless @filename.nil?
     end
+
 
     def get_bounding_box(position)
       case (position)
@@ -152,5 +151,6 @@ module Pdf
       end
     end
   end
+
 end
 
