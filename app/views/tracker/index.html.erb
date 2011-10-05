@@ -2,7 +2,7 @@
 
 
 <div class="storyboard">
-  <div class="column">
+  <div class="column first_column">
     <div class="col_header">
       <span>Development (<%= @all_development.length %>)</span>
       <span class="points"><%= @all_development.inject(0) { |sum, story| story.estimate.nil? ? sum : sum+story.estimate } %>
@@ -29,4 +29,12 @@
     </div>
     <%= render :partial => "story", :collection => @all_completed, :as => :story %>
   </div>
+
 </div>
+
+<div class="storyboard dummy_border">
+  <div class="column first_column"></div>
+  <div class="column"></div>
+  <div class="column"></div>
+</div>
+<br style="clear:both">
