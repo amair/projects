@@ -5,7 +5,7 @@ class PrintController < PivotalManagement
   @stories=[]
 
   def index
-    @state_selection = ["unstarted", "Started", "Finished", "Delivered" "Accepted", "Rejected"]
+    @state_selection = ["unscheduled", "unstarted", "started", "finished", "delivered", "accepted", "rejected"]
 
     get_filtered_stories unless retrieveProjects.nil?
 
