@@ -60,13 +60,6 @@ class PrintController < PivotalManagement
     story
   end
 
-  def filter_stories
-    filtered_stories = yield
-
-    filtered_stories.each { |s| s.div_class = lookupProject s.project_id } unless filtered_stories.empty?
-  end
-
-
   def get_filtered_stories
     @stories=[]
     if (!@@projects.nil?)
@@ -74,9 +67,10 @@ class PrintController < PivotalManagement
         logger.debug "Getting Stories for project #{p.id}"
 
         begin
-          state_filtering = params[:state] || "unstarted"
+          state_filtering = params[:state] || ["unscheduled", "unstarted"]
           logger.debug "Showing states #{state_filtering}"
           var = p.stories.all(:current_state => state_filtering, :story_type => ['feature', 'bug', 'chore'])
+          var.each { |s| s.div_class = lookupProject s.project_id } unless var.empty?
         rescue => e
           logger.error e.response
         end

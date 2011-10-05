@@ -1,7 +1,7 @@
 <h1>Print</h1>
 
 <div class="print_display_opts">
-    <%= form_tag( {:controller => :print, :action => "index"}, :method => "get", :class => "state_chooser") do %>
+  <%= form_tag({:controller => :print, :action => "index"}, :method => "get", :class => "state_chooser") do %>
 
       <div class="form_row">
         <label for="state[]">Conditions:</label>
@@ -21,12 +21,14 @@
 <div class="print_stories_list">
   <%= form_tag do %>
 
-      <div class="form_row">
+      <div class="printrows">
         <label for="story[]">Stories:</label>
         <% @stories.each do |story| %>
-            <br><%= check_box_tag 'story[]', [story.project_id, story.id],
-                                  (params[:stories] || {}).include?(story.id) %>
-            <%= story.name %>
+            <div class=<%= story.div_class %>>
+              <%= check_box_tag 'story[]', [story.project_id, story.id],
+                                (params[:stories] || {}).include?(story.id) %>
+              <%= story.name %>
+            </div>
         <% end %>
       </div>
 

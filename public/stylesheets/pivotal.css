@@ -37,28 +37,28 @@ span.points {
 }
 
 
-div.project {
+div.column div.project {
   border: 2px solid #FFFFFF;
   border-radius: 5px;
   padding: 5px;
   margin: 2px;
   padding: 10px;
 }
-div.project1 {
+div.column div.project1 {
   border: 2px solid #0000FF;
   border-radius: 5px;
   padding: 5px;
   margin: 2px;
 }
 
-div.project2 {
+div.column div.project2 {
   border: 2px solid #00FF00;
   border-radius: 5px;
   padding: 5px;
   margin: 2px;
 }
 
-div.project3 {
+div.column div.project3 {
   border: 2px solid #00FFFF;
   border-radius: 5px;
   padding: 5px;
@@ -66,7 +66,7 @@ div.project3 {
   padding: 10px;
 }
 
-div.project4 {
+div.column div.project4 {
   border: 2px solid #FF0000;
   border-radius: 5px;
   padding: 5px;
@@ -74,7 +74,7 @@ div.project4 {
   padding: 10px;
 }
 
-div.project5 {
+div.column div.project5 {
   border: 2px solid #FFFF00;
   border-radius: 5px;
   padding: 5px;
@@ -82,7 +82,7 @@ div.project5 {
   padding: 10px;
 }
 
-div.project6 {
+div.column div.project6 {
   border: 2px solid #ffb500;
   border-radius: 5px;
   padding: 5px;
@@ -111,4 +111,23 @@ div.StoryTitle {
 
 div#link {
     float: left;
+}
+
+div.printrows div.project1 {
+    color: #0000FF;
+}
+div.printrows div.project2 {
+    color: #139513;
+}
+div.printrows div.project3 {
+    color: #7e14b6;
+}
+div.printrows div.project4 {
+    color: #902a2a;
+}
+div.printrows div.project5 {
+    color: #909015;
+}
+div.printrows div.project6 {
+    color: #ffb500;
 }
