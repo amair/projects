@@ -161,9 +161,9 @@
     </y_left>
     <y_right>                                                 <!-- Y right axis, visible only if at least one graph is assigned to this axis -->
       <type></type>                                           <!-- [line] (line, stacked, 100% stacked) -->
-      <color></color>                                         <!-- [#000000] (hex color code) -->
+      <color>0D8ECF</color>                                   <!-- [#000000] (hex color code) -->
       <alpha></alpha>                                         <!-- [100] (0 - 100) -->
-      <width></width>                                         <!-- [2] (Number) line width, 0 for hairline -->
+      <width>1</width>                                         <!-- [2] (Number) line width, 0 for hairline -->
       <tick_length></tick_length>                             <!-- [7] (Number) -->
       <logarithmic></logarithmic>                             <!-- [false] (true / false) If set to true, this axis will use logarithmic scale instead of linear -->
     </y_right>
@@ -227,7 +227,7 @@
   </legend>
 
   <vertical_lines>                                            <!-- line chart can also display vertical lines/columns (set <vertical_lines>true</vertical_lines> in graph settings for that). If you also set <line_alpha>0</line_alpha> your line chart will become column chart -->
-    <width></width>                                           <!-- [0] (0 - 100) width of vertical line in percents. 0 for hairline. Set > 0 if you want to have column -->
+    <width>70</width>                                           <!-- [0] (0 - 100) width of vertical line in percents. 0 for hairline. Set > 0 if you want to have column -->
     <alpha></alpha>                                           <!-- [100] (0 - 100) -->
     <clustered></clustered>                                   <!-- [false] in case you have more then one graph with vertical lines enabled, you might want to place your columns next to each other, set true for that. -->
     <mask></mask>                                             <!-- [true] (true / false) as line chart by default starts on axis, and your column width is >0, then some part of first and last column will be outside plot area (incase you don't set <start_on_axis>false</false> Mask will cut off the part outside the plot area. Set to false if you don't want this. -->
@@ -383,7 +383,22 @@
         <![CDATA[{value}]]>
       </balloon_text>
     </graph>
-  </graphs>
+
+  <graph gid="3">
+     <axis>right</axis>
+    <vertical_lines>true</vertical_lines>
+     <title>Bugs</title>
+     <color>#CC00CC</color>
+    <line_alpha>0</line_alpha>
+     <fill_alpha>100</fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
+     <fill_color>#CC00CC</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
+     <selected>false</selected>
+     <balloon_text>
+       <![CDATA[{value}]]>
+     </balloon_text>
+   </graph>
+ </graphs>
+
 
 	<guides>	                                                 <!-- guides are straight lines drawn through all plot area at a give value. Can also be filled with color -->
 	 <max_min></max_min>                                       <!-- [false] (true / false) whether to include guides' values when calculating min and max of a chart -->

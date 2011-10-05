@@ -30,6 +30,12 @@ xml.chart do
         end
       end
 
+      # Graph 2 is the bug count in each iteration
+      xml.graph :gid => '3' do
+        @bugs.each_with_index do |bug, index|
+          xml.value(bug[1], "xid" => index)
+        end
+      end
     end
   end
 end

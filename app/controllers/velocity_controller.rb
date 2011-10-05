@@ -15,6 +15,7 @@ class VelocityController < PivotalManagement
 
   def getVelocities
     pointsHash = Hash.new
+    bugsHash = Hash.new
 
     if (!@@projects.nil?)
       @@projects.each do |p|
@@ -40,12 +41,19 @@ class VelocityController < PivotalManagement
           iterations.each do |i|
             stories = i.stories
             points = 0
+            bugs = 0
             unless stories.nil?
               stories.each do |s|
                 points += s.estimate unless s.estimate.nil?
+
+                if s.story_type.eql?("bug") || s.story_type.eql?("chore")
+                  bugs += 1
+                end
               end
             end
+
             start_date = i.start.strftime("%Y-%m-%d")
+
             if pointsHash.member? start_date
               logger.debug "Updating #{start_date} with #{points} points"
               pointsHash[start_date] += (points.to_f / divisor)
@@ -53,10 +61,18 @@ class VelocityController < PivotalManagement
               logger.debug "Setting #{start_date} to #{points} points"
               pointsHash[start_date] = (points.to_f / divisor)
             end
-            @velocities = pointsHash.sort
 
-            calculateMovingAverages
+            if bugsHash.member? start_date
+              bugsHash[start_date] += bugs
+            else
+              bugsHash[start_date] = bugs
+            end
+
           end
+          @velocities = pointsHash.sort
+          @bugs = bugsHash.sort
+
+          calculateMovingAverages
         end
       end
     end
