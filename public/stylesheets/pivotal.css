@@ -4,21 +4,24 @@ div {
 
 div.storyboard {
   background-color: #CCCCCC;
-  height: 100%;
+  /*height: 100%;*/
   overflow: hidden;
-  clear: both;
+  /*clear: both;*/
 }
 
 div.column {
   float: left;
   width: 27%;
   min-width: 150px;
-  height: 100%;
+  /*height: 100%;*/
   background-color: #F2F2F2;
-  border: 2px solid #D1D1D1;
+  /*border: 2px solid #D1D1D1;*/
   padding: 10px;
-  margin: 5px;
+  margin-right: 5px;
   border-radius: 5px;
+  padding-bottom: 9010px;
+  margin-bottom: -9000px;
+  border: 1px solid black;
 }
 
 div.col_header {
@@ -97,10 +100,7 @@ div.StoryPoints {
 
 div.bug {
    float: right;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-left: 0px;
-    padding-bottom: 20px;
+    margin-top: -15px;
 }
 
 div.StoryTitle {
