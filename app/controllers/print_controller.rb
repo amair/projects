@@ -74,7 +74,7 @@ class PrintController < PivotalManagement
         logger.debug "Getting Stories for project #{p.id}"
 
         begin
-          state_filtering = params[:state]
+          state_filtering = params[:state] || "unstarted"
           logger.debug "Showing states #{state_filtering}"
           var = p.stories.all(:current_state => state_filtering, :story_type => ['feature', 'bug', 'chore'])
         rescue => e
