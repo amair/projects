@@ -16,7 +16,7 @@ end
 
 class PivotalManagement < ApplicationController
 
-  @token = nil
+  #@token = nil
   @@projects = nil
 
   def retrieveProjects

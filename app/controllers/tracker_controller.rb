@@ -3,7 +3,7 @@
 class TrackerController < PivotalManagement
   def index
 
-    getStories unless retrieveProjects.nil?
+    get_stories unless retrieveProjects.nil?
 
   end
 
@@ -17,7 +17,7 @@ class TrackerController < PivotalManagement
     filtered_stories.each  { |s| s.div_class  = lookupProject s.project_id} unless filtered_stories.empty?
   end
 
-  def getStories
+  def get_stories
     stories = []
     @all_development = []
     @all_testing = []

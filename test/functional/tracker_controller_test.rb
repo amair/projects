@@ -6,4 +6,7 @@ class TrackerControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "get stories" do
+    assert true
+  end
 end
