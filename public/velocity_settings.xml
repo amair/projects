@@ -76,7 +76,7 @@
     <y_left>                                                  <!-- horizontal grid, Y left axis. Visible only if there is at least one graph assigned to left axis -->
       <enabled></enabled>                                     <!-- [true] (true / false) -->
       <color></color>                                         <!-- [#000000] (hex color code) -->
-      <alpha>10</alpha>                                         <!-- [15] (0 - 100) -->
+      <alpha>0</alpha>                                         <!-- [15] (0 - 100) -->
       <dashed></dashed>                                       <!-- [false] (true / false) -->
       <dash_length></dash_length>                             <!-- [5] (Number) -->
       <approx_count></approx_count>                           <!-- [10] (Number) approximate number of gridlines -->
@@ -86,7 +86,7 @@
     <y_right>                                                 <!-- horizontal grid, Y right axis. Visible only if there is at least one graph assigned to right axis -->
       <enabled></enabled>                                     <!-- [true] (true / false) -->
       <color></color>                                         <!-- [#000000] (hex color code) -->
-      <alpha></alpha>                                         <!-- [15] (0 - 100) -->
+      <alpha>10</alpha>                                         <!-- [15] (0 - 100) -->
       <dashed></dashed>                                       <!-- [false] (true / false) -->
       <dash_length></dash_length>                             <!-- [5] (Number) -->
       <approx_count></approx_count>                           <!-- [10] (Number) approximate number of gridlines -->
@@ -340,7 +340,7 @@
                                                               <!-- if graph settings are defined both here and in data file, the ones from data file are used -->
     <graph gid="2">                                           <!-- if you are using XML data file, graph "gid" must match graph "gid" in data file -->
 
-      <axis>left</axis>                                       <!-- [left] (left/ right) indicates which y axis should be used -->
+      <axis>right</axis>                                       <!-- [left] (left/ right) indicates which y axis should be used -->
       <title>Achieved Velocity</title>                                  <!-- [] (graph title) -->
       <color>#FFCC00</color>                                  <!-- [] (hex color code) if not defined, uses colors from this array: #FF0000, #0000FF, #00FF00, #FF9900, #CC00CC, #00CCCC, #33FF00, #990000, #000066 -->
       <color_hover></color_hover>                             <!-- [#BBBB00] (hex color code) -->
@@ -373,7 +373,7 @@
     </graph>
 
     <graph gid="1">
-      <axis>left</axis>
+      <axis>right</axis>
       <title>3-period Moving Average Velocity</title>
       <color>#999999</color>
       <fill_alpha>10</fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
@@ -385,7 +385,7 @@
     </graph>
 
   <graph gid="3">
-     <axis>right</axis>
+     <axis>left</axis>
     <vertical_lines>true</vertical_lines>
      <title>Bugs</title>
      <color>#CC00CC</color>
