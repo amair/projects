@@ -18,8 +18,8 @@ class PointsController < PivotalManagement
   def getPoints
 
     if (!@@projects.nil?)
-      #@@projects.each do |p|
-      p = @@projects.first
+      @@projects.each do |p|
+      #p = @@projects.first
         logger.debug "Getting iterations for project #{p.id}"
         logger.debug "Project using point scheme #{p.point_scale}"
 
@@ -51,6 +51,6 @@ class PointsController < PivotalManagement
       end
     end
 
-  #end
+  end
 
 end

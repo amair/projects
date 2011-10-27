@@ -7,23 +7,11 @@
 <script type="text/javascript" src="../../amcharts/javascript/amfallback.js"></script>
 <script type="text/javascript" src="../../amcharts/javascript/raphael.js"></script>
 
-<table>
-  <% @points.each do |p|%>
-  <tr>
-        <%p.each do |pt|%>
-        <td><%= pt%></td>
-        <%end%>
-  </tr>
-      <% end %>
-</table>
-
-
 
 <!-- chart is placed in this div. if you have more than one chart on a page, give unique id for each div -->
-<div id="chartdiv" style="width:600px; height:400px; background-color:#FFFFFF"></div>
+<div id="chartdiv" style="width:1000px; height:600px; background-color:#FFFFFF"></div>
 
 <script type="text/javascript">
-  <![CDATA[
 
     var params =
     {
@@ -36,7 +24,7 @@
     var flashVars =
     {
 
-        settings_file: "velocity_settings.xml",
+        settings_file: "points_settings.xml",
         data_file: data_file_url
     };
 
@@ -47,12 +35,11 @@
             amFallback.settingsFile = flashVars.settings_file;  		// doesn't support multiple settings files or additional_chart_settins as flash does
             amFallback.dataFile = flashVars.data_file;
             amFallback.pathToImages = "/images/"
-            amFallback.type = "line";
+            amFallback.type = "column";
             amFallback.write("chartdiv");
         }
         else {
             swfobject.embedSWF("../../amcharts/flash/amline.swf", "chartdiv", "600", "400", "8.0.0", "../../amcharts/flash/expressInstall.swf", flashVars, params);
         }
     }
-  ]]>
 </script>
