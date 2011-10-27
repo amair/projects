@@ -1,0 +1,68 @@
+xml.instruct! # <?xml version="1.0" encoding="UTF-8"?>
+xml.chart do
+  # xml.message "You can broadcast any message to chart from data XML file", :bg_color => "#FFFFFF", :text_color => "#000000"
+
+
+  if !@start_dates.nil? && !@points.nil?
+
+    xml.series do
+      @start_dates.each_with_index do |date, index|
+        xml.value(date, "xid" => index)
+      end
+    end
+
+    xml.graphs do
+
+      # Graph 1
+      xml.graph :gid => '1' do
+        @points.each_with_index do |points, index|
+            it = points[1]
+             xml.value(it, "xid" => index) unless it.nil?
+        end
+      end
+
+      # Graph 2
+      xml.graph :gid => '2' do
+        @points.each_with_index do |points, index|
+          it = points[2]
+          xml.value(it, "xid" => index) unless it.nil?
+        end
+      end
+
+      # Graph 3
+      xml.graph :gid => '3' do
+        @points.each_with_index do |points, index|
+          it = points[3]
+          xml.value(it, "xid" => index) unless it.nil?
+        end
+      end
+
+      # Graph 4
+      xml.graph :gid => '4' do
+        @points.each_with_index do |points, index|
+          it = points[4]
+          xml.value(it, "xid" => index) unless it.nil?
+        end
+      end
+
+
+      # Graph 5
+      xml.graph :gid => '5' do
+        @points.each_with_index do |points, index|
+          it = points[5]
+          xml.value(it, "xid" => index) unless it.nil?
+        end
+      end
+
+
+      # Graph 6
+      xml.graph :gid => '6' do
+        @points.each_with_index do |points, index|
+          it = points[6]
+          xml.value(it, "xid" => index) unless it.nil?
+        end
+      end
+
+    end
+  end
+end

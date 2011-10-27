@@ -2,7 +2,7 @@ Projects::Application.routes.draw do
 
   root :to => 'root_page#show'
 
-  resources :tracker, :velocity, :print
+  resources :tracker, :velocity, :print, :points
 
 
   # The priority is based upon order of creation:

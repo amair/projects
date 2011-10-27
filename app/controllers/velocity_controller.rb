@@ -1,11 +1,17 @@
 class VelocityController < PivotalManagement
 
+  @showbugs = 0
+
   def index
 
     @velocities = []
 
+
     respond_to do |format|
-      format.html
+      format.html  {
+        @showbugs = params[:showbugs]
+        logger.debug "Showbugs = #{@showbugs}"
+      }
       format.xml {
         getVelocities unless retrieveProjects.nil?
         render :action => "velocity.rxml", :layout => false
@@ -21,15 +27,6 @@ class VelocityController < PivotalManagement
       @@projects.each do |p|
         logger.debug "Getting iterations for project #{p.id}"
         logger.debug "Project using point scheme #{p.point_scale}"
-
-        if (p.point_scale=="0,1,2,3,4,5,6")
-          logger.debug "halving all points for this project"
-          divisor = 2
-        else
-          # TODO We are only dealing with 1-6 and 1-3 point scales ATM
-          logger.debug "Not changing points base - this MAY be a problem for SOME projects"
-          divisor = 1
-        end
 
         begin
           iterations = PivotalTracker::Iteration.done(p)
@@ -56,10 +53,10 @@ class VelocityController < PivotalManagement
 
             if pointsHash.member? start_date
               logger.debug "Updating #{start_date} with #{points} points"
-              pointsHash[start_date] += (points.to_f / divisor)
+              pointsHash[start_date] += (points.to_f)
             else
               logger.debug "Setting #{start_date} to #{points} points"
-              pointsHash[start_date] = (points.to_f / divisor)
+              pointsHash[start_date] = (points.to_f)
             end
 
             if bugsHash.member? start_date
@@ -77,6 +74,19 @@ class VelocityController < PivotalManagement
       end
     end
 
+  end
+
+  def includeBugs?
+    !@showbugs.nil?
+  end
+
+  def bugsParams
+    if includeBugs?
+      logger.debug "Show bugs"
+      "&showbugs=1"
+    else
+      logger.debug "Hide bugs"
+    end
   end
 
   def calculateMovingAverages

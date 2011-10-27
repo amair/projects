@@ -7,19 +7,16 @@
 <script type="text/javascript" src="../../amcharts/javascript/amfallback.js"></script>
 <script type="text/javascript" src="../../amcharts/javascript/raphael.js"></script>
 
-<%= form_tag({}, {:method => :get}) do %>
-    <div class="showbugs">
-      <label for="showbugs"></label>
-      <%= check_box_tag 'showbugs' %>
-      Include bugs on chart
-    </div>
+<table>
+  <% @points.each do |p|%>
+  <tr>
+        <%p.each do |pt|%>
+        <td><%= pt%></td>
+        <%end%>
+  </tr>
+      <% end %>
+</table>
 
-    <%= submit_tag("Update") %>
-
-<% end %>
-
-
-Should I showbugs?<%= @showbugs %>
 
 
 <!-- chart is placed in this div. if you have more than one chart on a page, give unique id for each div -->
@@ -35,7 +32,6 @@ Should I showbugs?<%= @showbugs %>
 
     var data_file_url = "velocity.xml";
     data_file_url = data_file_url.concat("<%= controller.get_params %>");
-    data_file_url = data_file_url.concat("<%= controller.bugsParams %>");
 
     var flashVars =
     {
@@ -60,15 +56,3 @@ Should I showbugs?<%= @showbugs %>
     }
   ]]>
 </script>
-
-<!-- end of amcharts script -->
-
-<!-- other parameters which can be passed with flashVars to swf:
-
-   chart_data - data in csv or xml format;
-   chart_settings - settings in xml format;
-   additional_chart_settings - settings in xml format which will be appended to chart_settings or settings loaded from a file;
-   loading_settings - string displayed while loading settings;
-   loading_data - string displayed while loading data;
-   preloader_color - hex color (#CC0000 for example) of a preloader bar;
--->

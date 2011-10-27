@@ -13,7 +13,7 @@ xml.chart do
 
     xml.graphs do
       #the gid is used in the settings file to set different settings just for this graph
-      # Graph 0 is the achieved velocity for the iteration
+      # Graph 2 is the achieved velocity for the iteration
       xml.graph :gid => '2' do
         @velocities.each_with_index do |velocity, index|
           xml.value(velocity[1], "xid" => index)
@@ -30,10 +30,12 @@ xml.chart do
         end
       end
 
-      # Graph 2 is the bug count in each iteration
-      xml.graph :gid => '3' do
-        @bugs.each_with_index do |bug, index|
-          xml.value(bug[1], "xid" => index)
+      if controller.includeBugs?
+        # Graph 3 is the bug count in each iteration
+        xml.graph :gid => '3' do
+          @bugs.each_with_index do |bug, index|
+            xml.value(bug[1], "xid" => index)
+          end
         end
       end
     end
