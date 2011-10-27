@@ -71,15 +71,15 @@
       <alpha>10</alpha>                                         <!-- [15] (0 - 100) -->
       <dashed></dashed>                                       <!-- [false](true / false) -->
       <dash_length></dash_length>                             <!-- [5] (Number) -->
-      <approx_count>8</approx_count>                           <!-- [4] (Number) approximate number of gridlines -->
+      <approx_count>18</approx_count>                           <!-- [4] (Number) approximate number of gridlines -->
     </x>
     <y_left>                                                  <!-- horizontal grid, Y left axis. Visible only if there is at least one graph assigned to left axis -->
       <enabled></enabled>                                     <!-- [true] (true / false) -->
       <color></color>                                         <!-- [#000000] (hex color code) -->
-      <alpha>0</alpha>                                         <!-- [15] (0 - 100) -->
+      <alpha>10</alpha>                                         <!-- [15] (0 - 100) -->
       <dashed></dashed>                                       <!-- [false] (true / false) -->
       <dash_length></dash_length>                             <!-- [5] (Number) -->
-      <approx_count></approx_count>                           <!-- [10] (Number) approximate number of gridlines -->
+      <approx_count>4</approx_count>                           <!-- [10] (Number) approximate number of gridlines -->
       <fill_color></fill_color>                               <!-- [#FFFFFF] (hex color code) every second area between gridlines will be filled with this color (you will need to set fill_alpha > 0) -->
       <fill_alpha></fill_alpha>                               <!-- [0] (0 - 100) opacity of fill -->
     </y_left>
@@ -98,7 +98,7 @@
   <values>                                                    <!-- VALUES -->
     <x>                                                       <!-- x axis -->
       <enabled></enabled>                                     <!-- [true] (true / false) -->
-      <rotate>90</rotate>                                       <!-- [0] (0 - 90) angle of rotation. If you want to rotate by degree from 1 to 89, you must have font.swf file in fonts folder -->
+      <rotate>45</rotate>                                       <!-- [0] (0 - 90) angle of rotation. If you want to rotate by degree from 1 to 89, you must have font.swf file in fonts folder -->
       <frequency></frequency>                                 <!-- [1] (Number) how often values should be placed, 1 - near every gridline, 2 - near every second gridline... -->
       <skip_first></skip_first>                               <!-- [false] (true / false) to skip or not first value -->
       <skip_last></skip_last>                                 <!-- [false] (true / false) to skip or not last value -->
@@ -327,94 +327,81 @@
       <text_color></text_color>                               <!-- [text_color] (hex color code) button text color -->
       <text_size></text_size>                                 <!-- [text_size](Number) button text size -->
       <text>                                                  <!-- [] (text) html tags may be used (supports <b>, <i>, <u>, <font>, <a href="">, <br/>. Enter text between []: <![CDATA[your <b>bold</b> and <i>italic</i> text]]>-->
-        <![CDATA[<b>Historical Velocities</b>]]>
+        <![CDATA[<b>Point Size of completed stories</b>]]>
       </text>
     </label>
 
   </labels>
 
-
+  <depth> 15 </depth>
+  <column>
+    <width>100</width>
+    <balloon_text> {value} points </balloon_text>
+    <grow_time>3</grow_time>
+  </column>
   <graphs>                                                    <!-- GRAPHS SETTINGS. These settings can also be specified in data file, as attributes of <graph>, in this case you can delete everything from <graphs> to </graphs> (including) -->
                                                               <!-- It is recommended to have graph settings here if you don't want to mix data with other params -->
                                                               <!-- copy <graph>...</graph> (including) as many times as many graphs you have and edit settings individually -->
                                                               <!-- if graph settings are defined both here and in data file, the ones from data file are used -->
   <graph gid="1">
      <axis>left</axis>
-    <vertical_lines>true</vertical_lines>
      <title>1 point</title>
      <color>#CC00CC</color>
     <line_alpha>0</line_alpha>
      <fill_alpha>100</fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
      <fill_color>#CC00CC</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
      <selected>false</selected>
-     <balloon_text>
-       <![CDATA[{value}]]>
-     </balloon_text>
    </graph>
   <graph gid="2">
      <axis>left</axis>
     <vertical_lines>true</vertical_lines>
      <title>2 points</title>
-     <color>#CC00CC</color>
+     <color>#00CCCC</color>
     <line_alpha>0</line_alpha>
      <fill_alpha>100</fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
-     <fill_color>#CC00CC</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
+     <fill_color>#00CCCC</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
      <selected>false</selected>
-     <balloon_text>
-       <![CDATA[{value}]]>
-     </balloon_text>
    </graph>
   <graph gid="3">
      <axis>left</axis>
     <vertical_lines>true</vertical_lines>
      <title>3 points</title>
-     <color>#CC00CC</color>
+     <color>#CCCC00</color>
     <line_alpha>0</line_alpha>
      <fill_alpha>100</fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
-     <fill_color>#CC00CC</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
+     <fill_color>#CCCC00</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
      <selected>false</selected>
-     <balloon_text>
-       <![CDATA[{value}]]>
-     </balloon_text>
    </graph>
   <graph gid="4">
      <axis>left</axis>
     <vertical_lines>true</vertical_lines>
      <title>4 points</title>
-     <color>#CC00CC</color>
+     <color>#CC0000</color>
     <line_alpha>0</line_alpha>
      <fill_alpha>100</fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
-     <fill_color>#CC00CC</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
+     <fill_color>#CC0000</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
      <selected>false</selected>
-     <balloon_text>
-       <![CDATA[{value}]]>
-     </balloon_text>
    </graph>
   <graph gid="5">
      <axis>left</axis>
     <vertical_lines>true</vertical_lines>
      <title>5 points</title>
-     <color>#CC00CC</color>
+     <color>#00CC00</color>
     <line_alpha>0</line_alpha>
      <fill_alpha>100</fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
-     <fill_color>#CC00CC</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
-     <selected>false</selected>
-     <balloon_text>
-       <![CDATA[{value}]]>
-     </balloon_text>
+     <fill_color>#00CC00</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
+     <selected>false</selected>>
+     <fill_alpha>100</fill_alpha>                               
    </graph>
   <graph gid="6">
      <axis>left</axis>
     <vertical_lines>true</vertical_lines>
      <title>6 points</title>
-     <color>#CC00CC</color>
+     <color>#0000CC</color>
     <line_alpha>0</line_alpha>
      <fill_alpha>100</fill_alpha>                               <!-- [0] (0 - 100) if you want the chart to be area chart, use bigger than 0 value -->
-     <fill_color>#CC00CC</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
+     <fill_color>#0000CC</fill_color>                               <!-- [grpah.color] (hex color code). Separate color codes with comas for gradient -->
      <selected>false</selected>
-     <balloon_text>
-       <![CDATA[{value}]]>
-     </balloon_text>
    </graph>
  </graphs>
 
