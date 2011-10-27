@@ -7,26 +7,11 @@
 <script type="text/javascript" src="../../amcharts/javascript/amfallback.js"></script>
 <script type="text/javascript" src="../../amcharts/javascript/raphael.js"></script>
 
-<%= form_tag({}, {:method => :get}) do %>
-    <div class="showbugs">
-      <label for="showbugs"></label>
-      <%= check_box_tag 'showbugs' %>
-      Include bugs on chart
-    </div>
-
-    <%= submit_tag("Update") %>
-
-<% end %>
-
-
-Should I showbugs?<%= @showbugs %>
-
 
 <!-- chart is placed in this div. if you have more than one chart on a page, give unique id for each div -->
 <div id="chartdiv" style="width:600px; height:400px; background-color:#FFFFFF"></div>
 
 <script type="text/javascript">
-  <![CDATA[
 
     var params =
     {
@@ -35,8 +20,6 @@ Should I showbugs?<%= @showbugs %>
 
     var data_file_url = "velocity.xml";
     data_file_url = data_file_url.concat("<%= controller.get_params %>");
-    data_file_url = data_file_url.concat("<%= controller.bugsParams %>");
-
     var flashVars =
     {
 
@@ -58,7 +41,6 @@ Should I showbugs?<%= @showbugs %>
             swfobject.embedSWF("../../amcharts/flash/amline.swf", "chartdiv", "600", "400", "8.0.0", "../../amcharts/flash/expressInstall.swf", flashVars, params);
         }
     }
-  ]]>
 </script>
 
 <!-- end of amcharts script -->

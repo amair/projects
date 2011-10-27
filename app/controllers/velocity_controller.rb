@@ -8,10 +8,7 @@ class VelocityController < PivotalManagement
 
 
     respond_to do |format|
-      format.html  {
-        @showbugs = params[:showbugs]
-        logger.debug "Showbugs = #{@showbugs}"
-      }
+      format.html
       format.xml {
         getVelocities unless retrieveProjects.nil?
         render :action => "velocity.rxml", :layout => false
