@@ -3,4 +3,18 @@
 
   <div class="storydescription"></div>
   <%= @story.description %>
- </div>
+
+  <ul>
+
+    <% @tasks.each do |t| %>
+        <li>
+          <div class=<%= t.complete %>>
+
+            <%= t.description %>
+          </div>
+        </li>
+    <% end %>
+  </ul>
+
+
+</div>
