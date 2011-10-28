@@ -2,7 +2,9 @@ Projects::Application.routes.draw do
 
   root :to => 'root_page#show'
 
-  resources :tracker, :velocity, :print, :points
+  match 'stories/:id' => 'stories#index'
+
+  resources :tracker, :velocity, :print, :points, :stories
 
 
   # The priority is based upon order of creation:

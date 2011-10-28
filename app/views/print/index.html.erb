@@ -27,7 +27,7 @@
             <div class=<%= story.div_class %>>
               <%= check_box_tag 'story[]', [story.project_id, story.id],
                                 (params[:stories] || {}).include?(story.id) %>
-              <%= story.name %>
+                                <%= link_to story.name, stories_url(:id => story.id) %>
             </div>
         <% end %>
       </div>

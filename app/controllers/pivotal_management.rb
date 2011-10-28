@@ -56,6 +56,16 @@ class PivotalManagement < ApplicationController
     param_string
   end
 
+  def lookupStory (id)
+    logger.debug "Searching for story #{id}"
+    @@projects.each do |p|
+      @story = p.stories.find(id)
+      logger.debug "Found story #{@story.name}" unless @story.nil?
+      break unless @story.nil?
+    end
+    @story
+  end
+
   private
 
   def get_token
