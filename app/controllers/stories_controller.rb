@@ -7,12 +7,8 @@ class StoriesController < PivotalManagement
       @story = lookupStory( params[:id] )
 
       @tasks =  @story.tasks.all
-      #unless @story.tasks.nil? || @story.tasks.empty?
-      #  @story.tasks.each do |task|
-      #    if (!task.complete)
-      #    end
-      #  end
-      #end
+
+      @notes = @story.notes.all
 
     end
   end

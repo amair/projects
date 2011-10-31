@@ -16,5 +16,13 @@
     <% end %>
   </ul>
 
+  <ul>
+
+    <% @notes.each do |n| %>
+        <li>
+            <%= n.text %>
+        </li>
+    <% end %>
+  </ul>
 
 </div>

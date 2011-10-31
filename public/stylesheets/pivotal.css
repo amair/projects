@@ -163,3 +163,7 @@ div.storycard {
     border: 3px solid #D1D1D1;
 
 }
+
+li div.true {
+    text-decoration: line-through
+}
