@@ -23,11 +23,15 @@
 
       <div class="printrows">
         <label for="story[]">Stories:</label>
-        <% @stories.each do |story| %>
-            <div class=<%= story.div_class %>>
-              <%= check_box_tag 'story[]', [story.project_id, story.id],
-                                (params[:stories] || {}).include?(story.id) %>
-                                <%= link_to story.name, stories_url(:id => story.id) %>
+        <% @stories.each_with_index do |project, index| %>
+            <div class=<%= project.first.div_class %>>
+              <% project.each do |story| %>
+                  <div>
+                    <%= check_box_tag 'story[]', [story.project_id, story.id],
+                                      (params[:stories] || {}).include?(story.id) %>
+                    <%= link_to story.name, stories_url(:id => story.id) %>
+                  </div>
+              <% end %>
             </div>
         <% end %>
       </div>

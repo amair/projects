@@ -63,8 +63,9 @@ class PrintController < PivotalManagement
   def get_filtered_stories
     @stories=[]
     if (!@@projects.nil?)
-      @@projects.each do |p|
+      @@projects.each_with_index do |p, index|
         logger.debug "Getting Stories for project #{p.id}"
+        @stories[index] = Array.new
 
         begin
           state_filtering = params[:state] || ["unscheduled", "unstarted"]
@@ -75,7 +76,7 @@ class PrintController < PivotalManagement
           logger.error e.response
         end
 
-        @stories.concat(var) unless var.nil?
+        @stories[index].concat(var) unless var.nil?
 
         logger.debug "Retrieved #{var.length} stories"
 

@@ -123,29 +123,41 @@ div#link {
     float: left;
 }
 
-div.printrows {
+.printrows {
     width: 80%;
     min-width: 300px;
     left: 10%;
 }
 
-div.printrows div.project1 {
-    background-color: #0000FF;
+.printrows .project1 {
+    border: 2px solid #0000FF;
+    margin:  10px;
+    padding:  5px;
 }
-div.printrows div.project2 {
-    background-color: #139513;
+.printrows .project2 {
+    border: 2px solid  #139513;
+    margin:  10px;
+    padding:  5px;
 }
-div.printrows div.project3 {
-    background-color: #7e14b6;
+.printrows .project3 {
+    border: 2px solid #7e14b6;
+    margin:  10px;
+    padding:  5px;
 }
-div.printrows div.project4 {
-    background-color: #902a2a;
+.printrows .project4 {
+    border: 2px solid #902a2a;
+    margin:  10px;
+    padding:  5px;
 }
-div.printrows div.project5 {
-    background-color: #909015;
+.printrows .project5{
+    border: 2px solid #909015;
+    margin:  10px;
+    padding:  5px;
 }
-div.printrows div.project6 {
-    background-color: #ffb500;
+.printrows .project6 {
+    border: 2px solid #ffb500;
+    margin:  10px;
+    padding:  5px;
 }
 
 div.printrows a:link {
