@@ -12,7 +12,9 @@
         <% end %>
       </div>
 
-      <%= submit_tag("Choose Stories") %>
+      <div class="print_filter_button">
+        <%= submit_tag("Choose Stories") %>
+      </div>
 
   <% end %>
 </div>
@@ -23,8 +25,8 @@
 
       <div class="printrows">
         <label for="story[]">Stories:</label>
-        <% @stories.each_with_index do |project, index| %>
-            <div class=<%= project.first.div_class %>>
+        <% @stories.each do |project| %>
+            <div class="project">
               <% project.each do |story| %>
                   <div>
                     <%= check_box_tag 'story[]', [story.project_id, story.id],

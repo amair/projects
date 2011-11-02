@@ -123,41 +123,39 @@ div#link {
     float: left;
 }
 
+.print_display_opts {
+   width: 10%;
+    min-width: 150px;
+    background-color: #a9a9a9;
+    padding: 5px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.print_filter_button {
+    float: left;
+}
+
+.form_row {
+      background-color: #d3d3d3;
+}
+
+.print_stories_list {
+    clear: both;
+}
+
 .printrows {
     width: 80%;
     min-width: 300px;
     left: 10%;
+    background-color: #a9a9a9;
 }
 
-.printrows .project1 {
-    border: 2px solid #0000FF;
+.printrows .project {
+    border: 2px solid #FFFFFF;
     margin:  10px;
     padding:  5px;
-}
-.printrows .project2 {
-    border: 2px solid  #139513;
-    margin:  10px;
-    padding:  5px;
-}
-.printrows .project3 {
-    border: 2px solid #7e14b6;
-    margin:  10px;
-    padding:  5px;
-}
-.printrows .project4 {
-    border: 2px solid #902a2a;
-    margin:  10px;
-    padding:  5px;
-}
-.printrows .project5{
-    border: 2px solid #909015;
-    margin:  10px;
-    padding:  5px;
-}
-.printrows .project6 {
-    border: 2px solid #ffb500;
-    margin:  10px;
-    padding:  5px;
+    background-color: #d3d3d3;
 }
 
 div.printrows a:link {
