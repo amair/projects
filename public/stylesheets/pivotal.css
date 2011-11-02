@@ -128,7 +128,7 @@ div#link {
     min-width: 150px;
     background-color: #a9a9a9;
     padding: 5px;
-    float: left;
+    float:left;
     margin-bottom: 10px;
 }
 
@@ -137,7 +137,8 @@ div#link {
 }
 
 .form_row {
-      background-color: #d3d3d3;
+    float: left;
+    background-color: #d3d3d3;
 }
 
 .print_stories_list {
