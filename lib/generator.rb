@@ -32,12 +32,12 @@ module PivotalTracker
     end
 
     def story_color
-      return "0000FF" if self.div_class.eql? "project1"
+      return "0000FF" if self.div_class.eql? "project0"
+      return "FFFF00" if self.div_class.eql? "project1"
       return "00FF00" if self.div_class.eql? "project2"
       return "00FFFF" if self.div_class.eql? "project3"
       return "FF0000" if self.div_class.eql? "project4"
-      return "0000FF" if self.div_class.eql? "project5"
-      return "ffb500" if self.div_class.eql? "project6"
+      return "ffb500" if self.div_class.eql? "project5"
       return "000000" # For Unknown
     end
 

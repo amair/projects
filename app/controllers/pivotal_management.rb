@@ -26,9 +26,8 @@ class PivotalManagement < ApplicationController
       @@projects = PivotalTracker::Project.all
       logger.debug "Found #{@@projects.length} Projects"
 
-      x=0
-      @@projects.each {|p| p.div_class = "project" + (x += 1).to_s}
-      # TODO Should really put a mod value on this to limit max
+      @@projects.each_with_index {|p, x| p.div_class = "project#{(x % 5).to_s}"
+      }
 
       @@projects
     rescue => e
