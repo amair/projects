@@ -69,7 +69,7 @@ module Pdf
 
       Prawn::Document.new(:page_layout => :landscape,
                           :page_size => "A4",
-                          :margin => [12.mm, 12.mm, 10.mm, 10.mm]) do |pdf|
+                          :left_margin => 5.mm) do |pdf|
 
         pdf.font "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf"
 
@@ -133,15 +133,15 @@ module Pdf
     def get_bounding_box(position)
       case (position)
         when 0
-          {:top => 190.mm, :left => 0.mm, :width => 130.mm, :height => 90.mm}
+          {:top => 185.mm, :left => 0.mm, :width => 140.mm, :height => 90.mm}
         when 1
-          {:top => 190.mm, :left => 143.mm, :width => 130.mm, :height => 90.mm}
+          {:top => 185.mm, :left => 148.mm, :width => 140.mm, :height => 90.mm}
         when 2
-          {:top => 90.mm, :left => 0.mm, :width => 130.mm, :height => 90.mm}
+          {:top => 80.mm, :left => 0.mm, :width => 140.mm, :height => 90.mm}
         when 3
-          {:top => 90.mm, :left => 143.mm, :width => 130.mm, :height => 90.mm}
+          {:top => 80.mm, :left => 148.mm, :width => 140.mm, :height => 90.mm}
         else
-          {:top => 0.mm, :left => 0.mm, :width => 130.mm, :height => 90.mm}
+          {:top => 0.mm, :left => 0.mm, :width => 140.mm, :height => 90.mm}
       end
     end
   end
