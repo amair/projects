@@ -2,6 +2,8 @@ Projects::Application.routes.draw do
 
   root :to => 'root_page#show'
 
+  match 'root_page' => 'root_page#show'
+
   match 'stories/:id' => 'stories#index'
 
   resources :tracker, :velocity, :print, :points, :stories
