@@ -19,7 +19,6 @@ class PointsController < PivotalManagement
 
     if (!@@projects.nil?)
       @@projects.each do |p|
-      #p = @@projects.first
         logger.debug "Getting iterations for project #{p.id}"
         logger.debug "Project using point scheme #{p.point_scale}"
 
@@ -32,7 +31,6 @@ class PointsController < PivotalManagement
         unless iterations.nil?
           iterations.each_with_index do |i, i_num|
             @start_dates[i_num] = i.start.strftime("%Y-%m-%d")
-            #@points[i_num] = Hash.new
 
             stories = i.stories
             unless stories.nil?
@@ -44,6 +42,7 @@ class PointsController < PivotalManagement
                 end
               end
             end
+            logger.debug estimates.inspect
             @points[i_num] = estimates
           end
 

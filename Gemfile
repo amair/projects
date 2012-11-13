@@ -10,6 +10,7 @@ gem 'rainbow'
 
 group :production do
   gem 'pg'
+  gem 'newrelic_rpm'
 end
 
 group :test do

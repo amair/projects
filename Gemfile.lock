@@ -43,6 +43,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    newrelic_rpm (3.5.0.1)
     nokogiri (1.5.0)
     pdf-reader (0.10.0)
       Ascii85 (~> 1.0.0)
@@ -97,6 +98,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  newrelic_rpm
   pg
   pivotal-tracker
   prawn
